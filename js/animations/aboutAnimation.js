@@ -31,3 +31,14 @@ if (title) {
         }
     });
 }
+
+const ticker = document.querySelector(".about-ticker-track");
+
+if (ticker) {
+    gsap.to(ticker, {
+        xPercent: -50,
+        duration: 20,
+        ease: "none",
+        repeat: -1
+    });
+}

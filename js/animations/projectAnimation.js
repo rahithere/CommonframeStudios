@@ -1,34 +1,38 @@
-gsap.registerPlugin(ScrollTrigger);
+document.addEventListener("DOMContentLoaded", () => {
+    gsap.registerPlugin(ScrollTrigger);
 
-const heading = document.querySelector(".projects-heading");
+    const title = document.querySelector(".projects-heading");
 
-if (heading) {
-    const words = heading.textContent.trim().split(/\s+/);
+    if (!title) {
+        console.log("Projects heading not found");
+        return;
+    }
 
-    heading.innerHTML = words
+    const words = title.textContent.trim().split(/\s+/);
+
+    title.innerHTML = words
         .map(word => `<span class="project-word">${word}</span>`)
         .join(" ");
 
-    const wordElements = heading.querySelectorAll(".project-word");
+    const wordElements = title.querySelectorAll(".project-word");
 
     gsap.set(wordElements, {
         opacity: 0,
-        y: 70,
-        filter: "blur(18px)",
-        display: "inline-block"
+        y: 60,
+        filter: "blur(20px)"
     });
 
     gsap.to(wordElements, {
         opacity: 1,
         y: 0,
         filter: "blur(0px)",
-        duration: 0.9,
-        stagger: 0.07,
-        ease: "power4.out",
+        duration: 1.1,
+        stagger: 0.08,
+        ease: "power3.out",
         scrollTrigger: {
-            trigger: heading,
+            trigger: title,
             start: "top 80%",
-            once: true
+            toggleActions: "play none none reverse"
         }
     });
-}
+});
